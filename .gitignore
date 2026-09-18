@@ -1,0 +1,13 @@
+node_modules/
+data/
+exports/
+*.sql
+*.log
+*.sqlite*
+*.xlsx
+.env*
+!.env.example
+setup-token.txt
+.publish/
+release/
+backups/

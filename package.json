@@ -1,0 +1,9 @@
+{
+  "name": "ecampus-transkrip",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.0.0" },
+  "scripts": { "import": "node import.mjs", "start": "node --env-file-if-exists=.env server.mjs", "backup": "node --env-file-if-exists=.env backup.mjs", "package": "node package-deploy.mjs", "test": "node test.mjs" },
+  "dependencies": { "exceljs": "4.4.0" }
+}
