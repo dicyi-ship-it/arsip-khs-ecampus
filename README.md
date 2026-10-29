@@ -10,11 +10,35 @@ Aplikasi lokal Node.js 24+, SQLite bawaan Node.js, dan ExcelJS. Data dibaca dari
 
 ## Menjalankan
 
+Panduan antarmuka pgAdmin tersedia di [docs/PANDUAN-PGADMIN.md](docs/PANDUAN-PGADMIN.md), dari koneksi server dan Restore sampai ekspor SQL untuk aplikasi.
+
+Panduan dari file backup awal hingga aplikasi berjalan tersedia di [docs/PANDUAN-EKSTRAK-BACKUP.md](docs/PANDUAN-EKSTRAK-BACKUP.md), termasuk pemilihan 7-Zip atau `pg_restore`, konversi SQL, impor, dan pemulihan backup aplikasi.
+
 Untuk Windows Server intranet, gunakan paket pada folder `release` dan ikuti [DEPLOY-WINDOWS.md](DEPLOY-WINDOWS.md). Paket mencakup database akademik dan dependensi. `npm run package` membangun ZIP baru; `npm run backup` membuat backup database akademik dan akun.
 
 ### Login dan super admin
 
-1. Jalankan aplikasi lalu buka http://localhost:3000/login.
+Konfigurasi workspace saat ini menggunakan port **1500**. Akun berikut sudah terdaftar dan aktif:
+
+| Keterangan | Nilai |
+| --- | --- |
+| Username | `arsip-ecampus@i-tech.ac.id` |
+| Nama | Arsip eCampus |
+| Peran | Super admin |
+| Password | Password yang ditetapkan saat akun dibuat. Tidak tersedia sebagai teks asli dalam file proyek dan tidak dapat dibaca kembali dari hash di database. |
+
+Cara login dengan akun tersebut:
+
+1. Klik dua kali **Jalankan.bat** atau jalankan `npm start`. Jika aplikasi sudah berjalan, langsung buka halaman login.
+2. Buka http://localhost:1500/login dari komputer server, atau http://192.168.88.123:1500/login dari komputer di jaringan yang sama. Alamat jaringan mengikuti konfigurasi `.env` dan memerlukan server yang dapat diakses.
+3. Isi **Username** dengan `arsip-ecampus@i-tech.ac.id` dan **Password** dengan password yang ditetapkan saat pembuatan akun, lalu klik **Masuk**. Aplikasi tidak memiliki password bawaan. Jika password tersebut lupa, pengelola server perlu mengatur ulang password terlebih dahulu.
+4. Setelah berhasil masuk, halaman arsip mahasiswa akan terbuka. Gunakan **Kelola pengguna** untuk membuat akun pengguna biasa dan **Logout** untuk keluar. Sesi berakhir setelah delapan jam.
+
+### Aktivasi pada instalasi baru
+
+Langkah berikut hanya berlaku jika database akun belum memiliki pengguna. Akun workspace di atas tidak otomatis tersedia pada instalasi baru.
+
+1. Jalankan aplikasi lalu buka `/login` pada alamat dan port yang diatur di `.env`. Tanpa konfigurasi port, alamat bawaannya http://localhost:3000/login.
 2. Pada penggunaan pertama, buka file lokal `data/setup-token.txt`. Salin kode tersebut ke formulir aktivasi, lalu buat username dan password super admin (minimal 12 karakter). Tidak ada password bawaan.
 3. Setelah aktivasi, kode dihapus dan halaman kembali ke login. Masuk menggunakan akun yang baru dibuat.
 4. Klik **Kelola pengguna** untuk menambahkan username, nama, dan password pengguna biasa. Pengguna dapat melihat seluruh arsip ITECH dan mengunduh Excel; hanya super admin dapat menambahkan akun. Belum ada pembatasan per mahasiswa.
@@ -24,7 +48,7 @@ Password disimpan menggunakan scrypt dan salt acak. Sesi menggunakan cookie Http
 
 Aplikasi secara default lokal (`127.0.0.1`). Untuk intranet, konfigurasi `HOST`, `PORT`, dan `PUBLIC_ORIGINS` melalui `.env`; lihat panduan deployment untuk HTTPS dan `COOKIE_SECURE=1`. [Referensi keamanan sesi OWASP](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) dan [Node.js crypto](https://nodejs.org/api/crypto.html).
 
-Klik dua kali **Jalankan.bat**, lalu buka http://localhost:3000. Atau jalankan:
+Klik dua kali **Jalankan.bat**, lalu buka http://localhost:1500 (port workspace saat ini). Atau jalankan:
 
 ```powershell
 npm start
