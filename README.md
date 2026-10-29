@@ -10,6 +10,8 @@ Aplikasi lokal Node.js 24+, SQLite bawaan Node.js, dan ExcelJS. Data dibaca dari
 
 ## Menjalankan
 
+Backup akademik khusus STTI NIIT ITECH: `node --env-file-if-exists=.env backup-itech.mjs`. Lihat [panduan backup ITECH](docs/BACKUP-KHUSUS-ITECH.md) untuk cakupan, verifikasi, dan pemulihan.
+
 Panduan antarmuka pgAdmin tersedia di [docs/PANDUAN-PGADMIN.md](docs/PANDUAN-PGADMIN.md), dari koneksi server dan Restore sampai ekspor SQL untuk aplikasi.
 
 Panduan dari file backup awal hingga aplikasi berjalan tersedia di [docs/PANDUAN-EKSTRAK-BACKUP.md](docs/PANDUAN-EKSTRAK-BACKUP.md), termasuk pemilihan 7-Zip atau `pg_restore`, konversi SQL, impor, dan pemulihan backup aplikasi.
